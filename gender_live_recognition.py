@@ -1,9 +1,9 @@
 import cv2
 from tensorflow.keras.models import load_model
 
-SCALE = (200, 200)
+SCALE = (100, 100)
 
-model = load_model('bad_model.h5')
+model = load_model('model.h5')
 
 # apriamo la webcam
 cap = cv2.VideoCapture(0)
