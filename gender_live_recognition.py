@@ -1,7 +1,7 @@
 import cv2
 from tensorflow.keras.models import load_model
 
-SCALE = (100, 100)
+SCALE = (150,150)
 
 model = load_model('model.h5')
 
@@ -19,10 +19,13 @@ while(cap.isOpened()):
 
     _, frame = cap.read()
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    rects = face_cascade.detectMultiScale(gray, 1.1, 15) # 15->neighbors minimi
+    # 15->neighbors minimi
+    # ritorna i volti trovati nel frame grigio
+    rects = face_cascade.detectMultiScale(gray_frame, 1.1, 20) 
 
+    # iteriamo su tutti i volti trovati
     for rect in rects:
         #             x partenza:x arrivo    y partenza: y arrivo     
         img = frame[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] # immagine ritaglaita del solo volto
@@ -32,12 +35,13 @@ while(cap.isOpened()):
         x = small_img.astype(float) # castiamo i valori a float...
         x/=255. # ... per poter normalizzare l'immagine
 
-        # num immagini, dim, canali
+        # num immagini, larghezza, altezza, canali
         x = x.reshape(1, SCALE[0], SCALE[1], 3) 
         y = model.predict(x)
 
         y = y[0][0] # singolo valore della previsione
 
+        # predizione
         label = "Uomo" if y>0.5 else "Donna"
         percentage = y if y>0.5 else 1.0-y
         percentage = round(percentage*100,1)

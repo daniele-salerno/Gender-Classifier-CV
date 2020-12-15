@@ -5,6 +5,7 @@ __pycache__/
 
 Training/*
 Validation/*
+faces_gender/*
 
 # C extensions
 *.so
@@ -130,3 +131,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+faces_gender.zip
