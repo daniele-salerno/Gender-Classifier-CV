@@ -1,7 +1,7 @@
 import cv2
 from tensorflow.keras.models import load_model
 
-SCALE = (150,150)
+SCALE = (200, 200)
 
 model = load_model('model.h5')
 

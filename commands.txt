@@ -2,3 +2,5 @@
 $ conda create -n tensorflow_gpuenv tensorflow-gpu
 # update conda by running
 $ conda update -n base -c defaults conda
+
+conda.bat activate tensorflow_gpuenv
