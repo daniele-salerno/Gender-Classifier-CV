@@ -6,6 +6,8 @@ __pycache__/
 Training/*
 Validation/*
 faces_gender/*
+dataset/*
+faces/*
 
 # C extensions
 *.so
