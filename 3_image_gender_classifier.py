@@ -5,18 +5,18 @@ import random
 
 SCALE = (200,200)
 
-model = load_model('model.h5')
+model = load_model('model_augmented.h5')
 
 # catturiamo solo i volti delle immagini catturate
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 n = random.randint(1, 5000)
-frame = cv2.imread('faces_gender/male/'+str(n)+'.jpg')
+frame = cv2.imread('images/four_women.JPG')
 
 #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
 # ritorna gli estremi dei volti trovati nel frame
-rects = face_cascade.detectMultiScale(frame, 1.1, 15) 
+rects = face_cascade.detectMultiScale(frame, 1.1, 5) 
 
 # iteriamo su tutti i volti trovati
 for rect in rects:
