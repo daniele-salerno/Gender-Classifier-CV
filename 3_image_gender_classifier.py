@@ -10,8 +10,8 @@ model = load_model('model_augmented.h5')
 # catturiamo solo i volti delle immagini catturate
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-n = random.randint(1, 5000)
-frame = cv2.imread('faces_gender/female/'+str(n)+'.jpg')
+# n = random.randint(1, 5000)
+# frame = cv2.imread('faces_gender/female/'+str(n)+'.jpg')
 frame = cv2.imread('images/four_women.JPG')
 
 # ritorna gli estremi dei volti trovati nel frame
