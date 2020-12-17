@@ -11,16 +11,14 @@ model = load_model('model_augmented.h5')
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 n = random.randint(1, 5000)
+frame = cv2.imread('faces_gender/female/'+str(n)+'.jpg')
 frame = cv2.imread('images/four_women.JPG')
 
-#frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
 # ritorna gli estremi dei volti trovati nel frame
-rects = face_cascade.detectMultiScale(frame, 1.1, 5) 
+rects = face_cascade.detectMultiScale(frame, 1.1, 15) 
 
 # iteriamo su tutti i volti trovati
 for rect in rects:
-    #             x partenza:x arrivo    y partenza: y arrivo     
     img = frame[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]] # immagine ritaglita del solo volto
 
     small_img = cv2.resize(img, SCALE) # scaliamo l'immagine in dimensione univoca
