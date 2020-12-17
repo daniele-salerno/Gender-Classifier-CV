@@ -2,8 +2,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-DATASET_DIR = "dataset/"
-DATASET_DIR = "Training/"
+DATASET_DIR = "./faces_gender/"
+# DATASET_DIR = "Training/"
 BATCH_SIZE = 16
 
 # istanziamo il generatore...
@@ -54,7 +54,7 @@ model.add(Dropout(0.5))
 model.add(Dense(1, activation="sigmoid"))
 
 model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
-model.fit(train_generator, epochs=30)
+model.fit(train_generator, epochs=100)
 
 metrics_train = model.evaluate(train_generator)
 metrics_test = model.evaluate(test_generator)
@@ -62,4 +62,4 @@ metrics_test = model.evaluate(test_generator)
 print("Train Accuracy = %.4f - Train Loss = %.4f" % (metrics_train[1], metrics_train[0]))
 print("Test Accuracy = %.4f - Test Loss = %.4f" % (metrics_test[1], metrics_test[0]))
 
-model.save("model_kaggle.h5")
+model.save("model_vanilla.h5")
