@@ -6,6 +6,7 @@ __pycache__/
 Training/*
 Validation/*
 faces_gender/*
+new_faces_gender/*
 dataset/*
 faces/*
 
