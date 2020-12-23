@@ -1,3 +1,13 @@
+###############################
+"""
+Part 1 of 4
+Script used for recognize and testing the camera.
+Click "c" to take a snapshot
+Click "r" to capture frontal faces
+Click "q" to quit
+"""
+###############################
+
 import cv2
 from datetime import datetime
 
@@ -12,8 +22,8 @@ out = None
 
 ret, _ = cap.read()
 
-if(not ret):
-    print("Webcam non disponibile")
+if not ret:
+    print("Webcam not availlable")
     exit(0)
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -34,35 +44,35 @@ while(cap.isOpened()):
     if(face_rec_mode):
         rects = face_cascade.detectMultiScale(frame, 1.1, 20) 
         for rect in rects:
-            # rettangolo verde intorno al volto
+            # draw a green rectangle around the detected face
             cv2.rectangle(frame, (rect[0], rect[1]), (rect[0]+rect[2], rect[1]+rect[3]), (0,255,0), 2) 
 
     cv2.imshow("webcam", frame)
     k = cv2.waitKey(1)
     if(k==ord("b")):
         bg_mode = not bg_mode
-        print("Modalità bianco/nero: %s" % bg_mode)
+        print("Black/White mode: %s" % bg_mode)
     elif(k==ord("t")):
         dt_mode = not dt_mode
-        print("Mostra data e ora: %s" % dt_mode)
+        print("Show time and date: %s" % dt_mode)
     elif(k==ord("c")):
         now = datetime.now()
         filename = now.strftime("%Y%m%d%H%M%S")+".jpg"
         cv2.imwrite(filename, frame)
-        print("Immagine catturata: %s" % filename)
+        print("Snapshot created: %s" % filename)
     elif(k==ord(" ")):
         if(out==None):
             out = cv2.VideoWriter('output.avi', codec, 20., (640, 480))
         rec = not rec
-        print("Registrazione: %s" % rec)
+        print("Rec: %s" % rec)
     elif(k==ord("r")):
         face_rec_mode = not face_rec_mode
-        print("Mostra riconoscimento facciale")
+        print("Show Faces")
     elif(k==ord("q")):
         break
 
 if(out!=None):
-    # necessario per avere il file della registrazione
+    # saving the video recorded
     out.release() 
 
 cap.release()

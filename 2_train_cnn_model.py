@@ -1,3 +1,11 @@
+###############################
+"""
+Part 2 of 4
+Here the training of the Convolutional Neural Network
+Will save a model colled "model.h5"
+"""
+###############################
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -9,13 +17,12 @@ import os
 
 SCALE = (200, 200)
 BATCH_SIZE = 16
-DATASET_DIR = "new_faces_gender/"
 
 # https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 
-# prepare dataset with faces only images
+# prepare dataset with face-only images
 
 os.mkdir("new_faces_gender")
 os.mkdir("new_faces_gender/female")
@@ -36,6 +43,8 @@ for dir in ["female","male"]:
       small_img = cv2.resize(face, SCALE)
       # ... and save as image
       cv2.imwrite("new_faces_gender/"+dir+"/"+f, small_img)
+
+DATASET_DIR = "new_faces_gender/"
 
 # the entire dataset cannot be fully loaded into the RAM,
 # therefore we will use ImageDataGenerator to load a batch of image for each
