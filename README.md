@@ -1,5 +1,5 @@
 # Gender-Classifier-CV
 In my first approach with a CNN 
-Using this [dataset](https://www.kaggle.com/taha07/gender-classification-using-opencv) from Kaggle I made a Camera able to real time classify people by gender
+Using this [dataset](https://s3.eu-west-3.amazonaws.com/profession.ai/datasets/faces_gender.zip) I made a Camera able to real time classify people by gender
 
-Libraries: opencv-python, keras
+Libraries: opencv-python, TensorFlow/Keras

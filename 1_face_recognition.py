@@ -4,10 +4,10 @@ from datetime import datetime
 rec = False
 bg_mode = False
 dt_mode = False
-classify_mode = False
+face_rec_mode = False
 
 cap = cv2.VideoCapture(0)
-#codec = cv2.VideoWriter_fourcc(*'MJPG') # codec
+codec = cv2.VideoWriter_fourcc(*'MJPG') # codec
 out = None
 
 ret, _ = cap.read()
@@ -31,7 +31,7 @@ while(cap.isOpened()):
     if(rec):
         out.write(frame)
         cv2.circle(frame, (frame.shape[1]-30, frame.shape[0]-30), 10, (0, 0, 255), cv2.FILLED)
-    if(classify_mode):
+    if(face_rec_mode):
         rects = face_cascade.detectMultiScale(frame, 1.1, 20) 
         for rect in rects:
             # rettangolo verde intorno al volto
@@ -56,7 +56,7 @@ while(cap.isOpened()):
         rec = not rec
         print("Registrazione: %s" % rec)
     elif(k==ord("r")):
-        classify_mode = not classify_mode
+        face_rec_mode = not face_rec_mode
         print("Mostra riconoscimento facciale")
     elif(k==ord("q")):
         break
